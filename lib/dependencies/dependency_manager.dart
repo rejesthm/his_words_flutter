@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:his_words/common/routes/main_router.dart';
+import 'package:his_words/common/routes/root_router.dart';
 import 'package:logger/web.dart';
 
 /// Global dependency locator used across the codebase
@@ -19,6 +21,18 @@ class DependencyManager {
   bool initialized = false;
 
   DependencyManager() {
+    // Routes
+    provideMainRouter();
+    provideRootRouter();
+
     sl<Logger>().i({"Initialized"});
+  }
+
+  void provideMainRouter() {
+    sl.registerSingleton<MainRouter>(MainRouter());
+  }
+
+  void provideRootRouter() {
+    sl.registerSingleton<RootRouter>(RootRouter());
   }
 }
