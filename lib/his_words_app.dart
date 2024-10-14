@@ -3,12 +3,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:his_words/common/routes/root_router.dart';
 import 'package:his_words/common/styles/app_themes.dart';
 import 'package:his_words/common/utils/context_utils.dart';
+import 'package:his_words/dependencies/app_dependency_provider.dart';
 import 'package:his_words/dependencies/dependency_manager.dart';
+import 'package:his_words/features/landing/landing_screen.dart';
 import 'package:his_words/generated/l10n.dart';
 
-class ArticulacyApp extends StatelessWidget {
+class HisWordsApp extends StatelessWidget {
   final DependencyManager dependencyManager;
-  const ArticulacyApp({
+  const HisWordsApp({
     super.key,
     required this.dependencyManager,
   });
@@ -18,7 +20,7 @@ class ArticulacyApp extends StatelessWidget {
     final rootRouter = sl.get<RootRouter>();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Articulacy",
+      title: "HisWords",
       navigatorKey: rootRouter.key,
       onGenerateRoute: rootRouter.getRoute,
       theme: AppThemes.darkTheme,
@@ -34,7 +36,11 @@ class ArticulacyApp extends StatelessWidget {
       ],
       home: GestureDetector(
         onTap: hideKeyboard,
-        child: const SizedBox(),
+        child: AppDependencyProvider(
+          child: LandingScreen(
+            dependencyManager: dependencyManager,
+          ),
+        ),
       ),
     );
   }

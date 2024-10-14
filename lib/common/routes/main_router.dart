@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:his_words/common/routes/route_helper.dart';
+import 'package:his_words/features/base/base_screen.dart';
 
 class MainRouter implements HisWordsRouter {
   @override
@@ -16,7 +17,7 @@ class MainRouter implements HisWordsRouter {
   final LinkedHashMap<String, RouteBuilder> routes = LinkedHashMap.from(
     <String, RouteBuilder>{
       base: ({settings}) => _buildRoute(
-            const SizedBox(),
+            const BaseScreen(),
             settings: settings,
           ),
       home: ({settings}) => _buildRoute(
